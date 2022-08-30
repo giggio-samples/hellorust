@@ -1,11 +1,15 @@
+#[derive(Debug)]
 struct Person<'a> {
     name: &'a str,
-    age: u8,
+    age: Box<u8>,
 }
 
 impl<'a> Person<'a> {
     fn new(name: &'a str, age: u8) -> Person {
-        Person { name, age }
+        Person {
+            name,
+            age: Box::new(age),
+        }
     }
 
     fn say_hello(&self) {
@@ -19,9 +23,11 @@ impl<'a> Person<'a> {
 pub fn use_lifetimes() {
     let p = Person::new("Giovanni", 44);
     p.say_hello();
-    let Person { name, ref age } = p;
-    println!("{} is {} years old.", name, age);
-    p.say_hello();
+    {
+        let Person { name, ref age } = p;
+        println!("{} is {} years old.", name, age);
+    }
+    println!("Person is {:?}", p);
 }
 
 // fn use_structs_incorrectly() -> Person {

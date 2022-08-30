@@ -1,8 +1,11 @@
 mod for_;
 mod while_;
 use for_::the_for;
+mod enums;
 mod expressions;
 mod lifetimes;
+#[macro_use]
+mod macros;
 mod patterns;
 mod structs;
 mod test;
@@ -19,4 +22,6 @@ fn main() {
     patterns::if_let(None);
     structs::use_structs();
     lifetimes::use_lifetimes();
+    enums::do_enums();
+    say_hello!();
 }
