@@ -1,6 +1,11 @@
 pub fn expr_if(cond: bool) -> i32 {
     println!("Expression If");
-    let x = if cond { 1 } else { 2 };
+    let x = if cond {
+        println!("dentr do if {}", cond);
+        1
+    } else {
+        2
+    };
     x + 1
 }
 

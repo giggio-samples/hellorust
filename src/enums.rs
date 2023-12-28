@@ -10,8 +10,8 @@ fn inspect(event: WebEvent) {
     match event {
         WebEvent::PageLoad => println!("page loaded"),
         WebEvent::PageUnload => println!("page unloaded"),
-        WebEvent::KeyPress(c) => println!("pressed '{}'.", c),
-        WebEvent::Paste(s) => println!("pasted \"{}\".", s),
+        WebEvent::KeyPress(c) => println!("pressed '{c}'."),
+        WebEvent::Paste(s) => println!("pasted \"{s}\"."),
         WebEvent::Click { x, y } => {
             println!("clicked at x={}, y={}.", x, y);
         }
@@ -19,13 +19,12 @@ fn inspect(event: WebEvent) {
 }
 
 pub fn do_enums() {
-    let pressed = WebEvent::KeyPress('x');
     let pasted = WebEvent::Paste("my text".to_owned());
     let click = WebEvent::Click { x: 20, y: 80 };
     let load = WebEvent::PageLoad;
     let unload = WebEvent::PageUnload;
 
-    inspect(pressed);
+    inspect(WebEvent::KeyPress('x'));
     inspect(pasted);
     inspect(click);
     inspect(load);
